@@ -6,8 +6,8 @@ exports.sendemail = function(to,body,subject,attachments,transporter)
 	    from: '', // sender address
 	    to: to, // list of receivers
 	    subject: subject, // Subject line
-	    html: body, // html body
-	    attachments: [{path:attachments}] // attachments
+	    html: body,
+	    attachments: [{path:attachments}] // html body
 	};
 	console.log(to,to)
 

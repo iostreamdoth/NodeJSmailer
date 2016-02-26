@@ -4,7 +4,7 @@ var loader = require('csv-load-sync');
 var filename = "test.csv"
 
 
-//CSV to JSON objects
+//CSV to JSON
 var csvData = loader(filename);
 var senderemail="";
 var senderpassword="";
@@ -20,6 +20,7 @@ rl.question('email id? ', function(answer)  {
   	rl.question('password? ', function(password)  {
 	    senderpassword= password
 	    rl.close();
+
 	    sendmails()
 	});
 });
@@ -35,7 +36,7 @@ function sendmails()
 	});
 
 	for(var n =0;n<csvData.length;n++){
-		// Using JSON objects here
+		
 		var emailadd = csvData[n].email;
 		var firstname = csvData[n].firstname;
 		var company = csvData[n].company;
@@ -45,7 +46,7 @@ function sendmails()
 		
 		//Send
 		if(csvData[n].sendmail ==1){
-			email.sendemail(emailadd,body,subject,"",transporter)
+			email.sendemail(emailadd,body,subject,"Filename",transporter)
 		}
 	}
 
