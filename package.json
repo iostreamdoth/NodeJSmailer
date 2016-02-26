@@ -1,0 +1,17 @@
+{
+  "name": "BulkMailer",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "nodemailer": "~2.2.1",
+    "csv-parse": "~1.0.2",
+    "csv-load-sync": "~1.0.0",
+    "readline": "~1.3.0"
+  }
+}
