@@ -1,7 +1,7 @@
 var nodemailer = require('nodemailer');
 var email = require('./email')
 var loader = require('csv-load-sync');
-var filename = "test.csv"
+var filename = "contacts.csv"
 
 
 //CSV to JSON
@@ -9,6 +9,7 @@ var csvData = loader(filename);
 var senderemail="";
 var senderpassword="";
 const readline = require('readline');
+var transporter;
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
@@ -21,36 +22,55 @@ rl.question('email id? ', function(answer)  {
 	    senderpassword= password
 	    rl.close();
 
-	    sendmails()
+	    transporter = nodemailer.createTransport({
+			service: 'Gmail',
+		    auth: {
+		        user:senderemail,
+		        pass:senderpassword
+		    }
+		});
+
+	    setTimeout(sendmails,3000);
 	});
 });
 
 function sendmails()
 {
-	var transporter = nodemailer.createTransport({
-		service: 'Gmail',
-	    auth: {
-	        user:senderemail,
-	        pass:senderpassword
-	    }
-	});
+	
+	setTimeout(processObject, 10000);
+	
+	
+}
+function processObject()
+{
 
-	for(var n =0;n<csvData.length;n++){
-		
-		var emailadd = csvData[n].email;
-		var firstname = csvData[n].firstname;
-		var company = csvData[n].company;
-		var body="Hi " + firstname + ",<br/><br/>";
-		
-		var subject = "Subject " + company 
-		
-		//Send
-		if(csvData[n].sendmail ==1){
-			email.sendemail(emailadd,body,subject,"Filename",transporter)
-		}
+	var obj;
+	if(csvData.length>0)
+	{
+		obj = csvData.shift();
+
+	}
+	else
+	{
+		return;
 	}
 
-	
+		var emailadd = obj.email;
+		var firstname = obj.firstname;
+		var company = obj.company;
+		var body="Hi " + firstname + ",<br/><br/>";
+		var subject = "Job Application for sotware engineer role at " + company 
+		//console.log(obj)
+		//Send
+		if(obj.sendmail ==1){
+			email.sendemail(emailadd,body,subject,"Nishant_S-Resume.pdf",transporter,function(){ 
+				sendmails();
+			})
+		}
+		else
+		{
+			sendmails();
+		}
 }
 
 

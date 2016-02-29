@@ -1,5 +1,5 @@
 
-exports.sendemail = function(to,body,subject,attachments,transporter)
+exports.sendemail = function(to,body,subject,attachments,transporter,callback)
 {
 
 	var mailOptions = {
@@ -9,16 +9,19 @@ exports.sendemail = function(to,body,subject,attachments,transporter)
 	    html: body,
 	    attachments: [{path:attachments}] // html body
 	};
-	console.log(to,to)
+	
 
 	
 
 
 	transporter.sendMail(mailOptions, function(error, info){
 	    if(error){
-	        return console.log(error);
+	    	console.log("Not sent to : ",to)
+	        return;
 	    }
-	    console.log('Message sent: ' + info.response);
-
+	    console.log("Sent to : ",to)
+	    //console.log('Message sent: ' + info.response);
+	    callback();
 	});
+	//callback();
 }
