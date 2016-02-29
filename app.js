@@ -59,11 +59,12 @@ function processObject()
 		var firstname = obj.firstname;
 		var company = obj.company;
 		var body="Hi " + firstname + ",<br/><br/>";
+		
 		var subject = "Job Application for sotware engineer role at " + company 
 		//console.log(obj)
 		//Send
 		if(obj.sendmail ==1){
-			email.sendemail(emailadd,body,subject,"Nishant_S-Resume.pdf",transporter,function(){ 
+			email.sendemail(emailadd,body,subject,"",transporter,function(){ 
 				sendmails();
 			})
 		}

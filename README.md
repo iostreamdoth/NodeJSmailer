@@ -49,7 +49,16 @@ body += "<br/><br/>Attached is my resume. Please refer me if you come across any
 body += "<br/><br/>Thanks,<br/>Name of myself";
 body += "<br/>LinkedIn: Some link<br/> Cell: Some cell number"
  ```
+
+also in email.js just add
+
+```javascript
+from: 'Name Lastname <enter email here>', // sender address
+// let the magic begin
+```
+
 to start the application.
+
 ```javascript
 //in Ubuntu
 $ nodejs app.js 
@@ -57,18 +66,15 @@ $ nodejs app.js
 // In other os
 $ node app.js //in other OS's 
 ```
+
+
 to start the application.
 ```javascript
 email id? enter emailid
 password? enter password 
 // let the magic begin
 ```
-also in email.js just add
 
-```javascript
-from: 'Name Lastname <enter email here>', // sender address
-// let the magic begin
-```
 
 
 
