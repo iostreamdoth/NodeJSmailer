@@ -63,6 +63,12 @@ email id? enter emailid
 password? enter password 
 // let the magic begin
 ```
+also in email.js just add
+
+```javascript
+from: 'Name Lastname <enter email here>', // sender address
+// let the magic begin
+```
 
 
 
